@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Notes App</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="app">
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+      <div>
+        <h1 class="logo">
+          📝 Notes
+        </h1>
+
+        <p class="subtitle">
+          Capture your thoughts, ideas & reminders.
+        </p>
+      </div>
+
+      <div class="notes-count">
+        <span id="notesCount">0</span>
+        <span>Notes</span>
+      </div>
+
+    </header>
+
+
+    <!-- ================= CREATE NOTE ================= -->
+
+    <section class="note-form-section">
+
+      <div class="form-header">
+        <h2>Create a new note</h2>
+
+        <p>
+          Write something worth remembering.
+        </p>
+      </div>
+
+
+      <form id="noteForm">
+
+        <!-- Title -->
+
+        <div class="form-group">
+
+          <label for="titleInput">
+            Title
+          </label>
+
+          <input type="text" id="titleInput" placeholder="e.g. JavaScript Learning" autocomplete="off">
+
+          <small class="error-message" id="titleError">
+          </small>
+
+        </div>
+
+
+        <!-- Content -->
+
+        <div class="form-group">
+
+          <label for="contentInput">
+            Content
+          </label>
+
+          <textarea id="contentInput" rows="6" placeholder="Write something..."></textarea>
+
+          <small class="error-message" id="contentError">
+          </small>
+
+        </div>
+
+
+        <!-- Save Button -->
+
+        <div class="form-actions">
+
+          <button type="submit" class="save-btn" id="saveBtn">
+
+            <span>＋</span>
+            Save Note
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </section>
+
+
+    <!-- ================= NOTES ================= -->
+
+    <section class="notes-section">
+
+      <div class="section-header">
+
+        <div>
+          <h2>Your Notes</h2>
+
+          <p>
+            Your saved thoughts appear here.
+          </p>
+        </div>
+
+      </div>
+
+
+      <!-- Empty State -->
+
+      <div class="empty-state" id="emptyState">
+
+        <div class="empty-icon">
+          📝
+        </div>
+
+        <h3>
+          No notes yet.
+        </h3>
+
+        <p>
+          Create your first note.
+        </p>
+
+      </div>
+
+
+      <!-- JavaScript Notes Render Karega -->
+
+      <div class="notes-grid" id="notesContainer">
+        <article class="note-card">
+
+          <div class="note-card-header">
+
+            <h3 class="note-title">
+              JavaScript Learning
+            </h3>
+
+            <button class="delete-btn" data-id="123">
+              🗑
+            </button>
+
+          </div>
+
+
+          <p class="note-content">
+            Today I learned about state, render and localStorage.
+            <a href="#">read more</a>
+          </p>
+
+
+          <div class="note-footer">
+
+            <span class="note-date">
+              Sep 1, 2026
+            </span>
+
+            <span class="note-time">
+              7:30 PM
+            </span>
+
+          </div>
+
+        </article>
+
+        <article class="note-card">
+
+          <div class="note-card-header">
+
+            <h3 class="note-title">
+              JavaScript Learning
+            </h3>
+
+            <button class="delete-btn" data-id="123">
+              🗑
+            </button>
+
+          </div>
+
+
+          <p class="note-content">
+            Today I learned about state, render and localStorage.
+          </p>
+
+
+          <div class="note-footer">
+
+            <span class="note-date">
+              Sep 1, 2026
+            </span>
+
+            <span class="note-time">
+              7:30 PM
+            </span>
+
+          </div>
+
+        </article>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
