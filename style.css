@@ -760,6 +760,8 @@ body {
 }
 
 
+
+
 /* =========================================
    NOTE FOOTER
 ========================================= */
@@ -809,6 +811,10 @@ body {
   border-radius: var(--radius-large);
 
   text-align: center;
+}
+
+.empty-state.hide {
+  display: none;
 }
 
 
