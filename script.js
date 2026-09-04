@@ -5,6 +5,9 @@ const emptyStateElement = document.querySelector("#emptyState");
 const notesContainerElement = document.querySelector("#notesContainer");
 const notesCountElement = document.querySelector("#notesCount");
 
+const titleErrorElement = document.querySelector("#titleError");
+const contentErrorElement = document.querySelector("#contentError");
+
 let notes = JSON.parse(localStorage.getItem("note")) || [];
 
 const getInputValue = () => {
@@ -93,10 +96,53 @@ const notesCount = () => {
   notesCountElement.textContent = notes.length;
 };
 
+const validateNote = (title, content) => {
+  if (title.trim() === "") {
+    return {
+      field: "title",
+      message: "Title is required",
+    };
+  }
+
+  if (content.trim() === "") {
+    return {
+      field: "content",
+      message: "Content is required",
+    };
+  }
+
+  return null;
+};
+
+const clearErrors = () => {
+  if (titleInputElement.trim().value.length > 0) {
+    titleErrorElement.textContent = "";
+  }
+  if (contentInputElement.trim().value.length > 0) {
+    contentErrorElement.textContent = "";
+  }
+};
+
+const showError = (error) => {
+  if (error) {
+    if (error.field === "title") {
+      titleErrorElement.textContent = error.message;
+    }
+    if (error.field === "content") {
+      contentErrorElement.textContent = error.message;
+    }
+    return;
+  }
+};
+
 const handleSubmit = (e) => {
   e.preventDefault();
 
   const { title, content } = getInputValue();
+
+  const error = validateNote(title, content);
+
+  showError(error);
 
   const note = createNote(title, content);
 
@@ -114,6 +160,9 @@ const handleSubmit = (e) => {
 renderNotes();
 
 noteFormElement.addEventListener("submit", handleSubmit);
+
+titleInputElement.addEventListener("input", clearErrors);
+contentInputElement.addEventListener("input", clearErrors);
 
 notesContainerElement.addEventListener("click", (e) => {
   if (!e.target.classList.contains("delete-btn")) return;
