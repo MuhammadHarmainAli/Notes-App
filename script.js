@@ -3,6 +3,7 @@ const titleInputElement = document.querySelector("#titleInput");
 const contentInputElement = document.querySelector("#contentInput");
 const emptyStateElement = document.querySelector("#emptyState");
 const notesContainerElement = document.querySelector("#notesContainer");
+const notesCountElement = document.querySelector("#notesCount");
 
 let notes = JSON.parse(localStorage.getItem("note")) || [];
 
@@ -88,7 +89,9 @@ const saveNote = () => {
   localStorage.setItem("note", JSON.stringify(notes));
 };
 
-const deleteNotes = (id) => {};
+const notesCount = () => {
+  notesCountElement.textContent = notes.length;
+};
 
 const handleSubmit = (e) => {
   e.preventDefault();
@@ -104,18 +107,23 @@ const handleSubmit = (e) => {
   saveNote();
 
   renderNotes();
+
+  notesCount();
 };
 
 renderNotes();
 
 noteFormElement.addEventListener("submit", handleSubmit);
 
-const deleteButton = document.querySelectorAll(".delete-btn");
+notesContainerElement.addEventListener("click", (e) => {
+  if (!e.target.classList.contains("delete-btn")) return;
 
-deleteButton.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const checkedId = Number(btn.dataset.id);
-    
-    
-  });
+  const clickedId = Number(e.target.dataset.id);
+
+  notes = notes.filter((note) => note.id !== clickedId);
+
+  notesCountElement.textContent = notes.length;
+
+  saveNote();
+  renderNotes();
 });
